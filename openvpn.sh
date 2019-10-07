@@ -103,6 +103,7 @@ cat key.pem cert.pem > /etc/stunnel/stunnel.pem
 function endropstun () {
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 143"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 }
@@ -222,18 +223,12 @@ redirect-gateway def1
 script-security 2
 cipher none
 setenv CLIENT_CERT 0
-#uncomment below for windows 10
-#setenv opt block-outside-dns # Prevent Windows 10 DNS leak
 auth none" >> /etc/openvpn/client-template.txt
 mkdir -p /home/panel/html
-cp /etc/openvpn/client-template.txt /home/panel/html/PisoVPN-SunTUConfig.ovpn
-echo 'http-proxy' $IP $PORTS >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
-echo 'http-proxy-option CUSTOM-HEADER ""' >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
-echo 'http-proxy-option CUSTOM-HEADER "POST https://viber.com HTTP/1.1"' >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
-echo 'http-proxy-option CUSTOM-HEADER "X-Forwarded-For: viber.com"' >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
-echo '<ca>' >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
-cat /etc/openvpn/ca.crt >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
-echo '</ca>' >> /home/panel/html/PisoVPN-SunTUConfig.ovpn
+cp /etc/openvpn/client-template.txt /home/panel/html/client.ovpn
+echo '<ca>' >> /home/panel/html/client.ovpn
+cat /etc/openvpn/ca.crt >> /home/panel/html/client.ovpn
+echo '</ca>' >> /home/panel/html/client.ovpn
 }
 
 function noload () {
@@ -279,12 +274,8 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 client = no
 
-[openssh]
-accept = 444
-connect = 127.0.0.1:222
-
 [dropbear]
-accept = 443
+accept = 445
 connect = 127.0.0.1:442
 END
 }
@@ -298,7 +289,8 @@ logdir /var/log/privoxy
 filterfile default.filter
 logfile logfile
 listen-address 0.0.0.0:$PORTS
-listen-address 0.0.0.0:8000
+listen-address 0.0.0.0:8888
+listen-address 0.0.0.0:3128
 toggle 1
 enable-remote-toggle 0
 enable-remote-http-toggle 0
@@ -354,7 +346,7 @@ function installQuestions () {
 	fi
 	echo ""
 	echo 'Your IP is '"$IP" '.. What port do you want OpenVPN to listen to?'
-	echo "   1) Default: 465"
+	echo "   1) Default: 443"
 	echo "   2) Custom"
 	echo "   3) Random [49152-65535]"
 	until [[ "$PORT_CHOICE" =~ ^[1-3]$ ]]; do
@@ -362,11 +354,11 @@ function installQuestions () {
 	done
 	case $PORT_CHOICE in
 		1)
-			PORT="465"
+			PORT="443"
 		;;
 		2)
 			until [[ "$PORT" =~ ^[0-9]+$ ]] && [ "$PORT" -ge 1 ] && [ "$PORT" -le 65535 ]; do
-				read -rp "Custom port [1-65535]: " -e -i 465 PORT
+				read -rp "Custom port [1-65535]: " -e -i 443 PORT
 			done
 		;;
 		3)
