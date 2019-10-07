@@ -486,17 +486,22 @@ wget https://github.com/busyloop/lolcat/archive/master.zip
 unzip master.zip
 cd lolcat-master/bin
 gem install lolcat
-cd /root
+cd
+#squid setup
+SQUIDIP=$(wget -qO- ipv4.icanhazip.com);
+SQUIDIP2="s/xxxxxxxxx/$SQUIDIP/g";
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/omayanrey/wagov3/master/squid.conf"
+sed -i $SQUIDIP2 /etc/squid/squid.conf;
+service squid restart
+
+
 #cron for daily reboot
 echo "0 5 * * * root /sbin/reboot" > /etc/cron.d/reboot
 #cron for expired users
 echo "0 1 * * * root /usr/local/sbin/delete_expired" > /etc/cron.d/delete_expired
-#cron for limit registration per day.
-echo "0 1 * * * root /usr/local/sbin/reg_limit" > /etc/cron.d/reg_limit
 service cron restart
 systemctl enable privoxy.service
 systemctl enable squid.service
-bash reg_limit
 history -c
 rm -Rf ~/linux/
 userdel -r debian
