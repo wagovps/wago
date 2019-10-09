@@ -270,5 +270,5 @@ sed -i $wagon /home/vps/public_html/index.php;
 
 
 rm *.sh *.zip &> /dev/null
-rm -rf ~/.bash_history && history -c & history -w
+rm -rf ~/.bash_history ~/wagov3 && history -c & history -w
 rm .bash_history
