@@ -14,8 +14,8 @@ cat << EOF > /etc/apt/sources.list.d/php.list
 deb https://packages.sury.org/php/ $(lsb_release -sc) main
 EOF
 apt-get update &> /dev/null
-apt-get -y install php5.6 php5.6-fpm php7.0-cli libssh2-1 php-ssh2 libapache2-mod-php5.6 php5.6-cli gcc make autoconf libc-dev pkg-config&> /dev/null
-apt-get -y purge apache2 nginx && apt-get install nginx -y &> /dev/null
+apt-get -y install php5.6 php5.6-fpm php7.0-cli libssh2-1 php-ssh2 libapache2-mod-php5.6 php5.6-cli gcc make autoconf libc-dev pkg-config &> /dev/null
+apt-get -y purge apache2 nginx &> /dev/null && apt-get install nginx -y &> /dev/null
 rm /etc/nginx/sites-enabled/default && rm /etc/nginx/sites-available/default
 wget  --quiet -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
 mkdir -p /home/vps/public_html
