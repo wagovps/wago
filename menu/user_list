@@ -9,7 +9,7 @@ else
 fi
 clear
 echo -e ""
-echo -e " PisoVPN "
+echo -e " WagoVPN "
 echo -e "  Users list "
 echo -e " Username     Expiration"
 echo " "

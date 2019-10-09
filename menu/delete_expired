@@ -11,7 +11,7 @@ echo $diff|grep -q ^\- && echo okay && continue
 userdel -r $user  &> /dev/null
 done
 echo -e ""
-echo -e " PisoVPN "
+echo -e " WagoVPN "
 echo -e ""
 echo -e "  All Expired Users Has Been Deleted"
 echo -e ""

@@ -2,7 +2,7 @@
 
 clear
 echo -e ""
-echo -e " PisoVPN "
+echo -e " WagoVPN "
 echo -e ""
 read -p " Username: " User
 echo -e ""

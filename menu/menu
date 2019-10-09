@@ -2,7 +2,7 @@
 clear
 
 echo -e ""
-echo -e " PisoVPN "
+echo -e " WagoVPN "
 echo -e ""
 echo -e " Commands:"
 echo -e "  accounts"
