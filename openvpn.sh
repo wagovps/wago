@@ -113,11 +113,11 @@ ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
 }
 
 function certandkey () {
-	cp ~/linux/ca.crt /etc/openvpn/
-	cp ~/linux/server.key /etc/openvpn/
-	cp ~/linux/server.req /etc/openvpn/
-	cp ~/linux/server.crt /etc/openvpn/
-	cp ~/linux/dh.pem /etc/openvpn/
+	cp ~/wagov3/ca.crt /etc/openvpn/
+	cp ~/wagov3/server.key /etc/openvpn/
+	cp ~/wagov3/server.req /etc/openvpn/
+	cp ~/wagov3/server.crt /etc/openvpn/
+	cp ~/wagov3/dh.pem /etc/openvpn/
 }
 
 function serverconf () {
@@ -321,9 +321,9 @@ service stunnel4 restart
 
 function setall () {
 rm /etc/issue.net
-cat ~/linux/bann3r > /etc/issue.net
-cat ~/linux/banner > /etc/motd
-cp ~/linux/banner /etc/
+cat ~/wagov3/bann3r > /etc/issue.net
+cat ~/wagov3/banner > /etc/motd
+cp ~/wagov3/banner /etc/
 sed -i 's@#Banner[[:space:]]none@Banner /etc/banner@g' /etc/ssh/sshd_config
 sed -i 's@PrintMotd[[:space:]]no@PrintMotd yes@g' /etc/ssh/sshd_config
 sed -i 's@#PrintLastLog[[:space:]]yes@PrintLastLog no@g' /etc/ssh/sshd_config
@@ -434,10 +434,10 @@ pip install -r requirements.txt
 cp openvpn-monitor.conf.example openvpn-monitor.conf
 sed -i "s@host=localhost@host=127.0.0.1@g" openvpn-monitor.conf
 sed -i 's@port=5555@port=7505@g' openvpn-monitor.conf
-cd ~/linux/
+cd ~/wagov3/
 cp openvpn-monitor.ini /etc/uwsgi/apps-available/
 ln -s /etc/uwsgi/apps-available/openvpn-monitor.ini /etc/uwsgi/apps-enabled/
-cp ~/linux/openvpn-monitor.py /srv/openvpn-monitor/openvpn-monitor.py -f
+cp ~/wagov3/openvpn-monitor.py /srv/openvpn-monitor/openvpn-monitor.py -f
 }
 
 initialCheck
@@ -467,13 +467,13 @@ mkdir -p /etc/nginx;
 wget -qO /var/tmp/nginx.zip "https://raw.githubusercontent.com/rayvynlee/linux/master/nginx.zip";
 unzip -qq /var/tmp/nginx.zip -d /etc/nginx/
 fi
-cd ~/linux
+cd ~/wagov3
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
-cp ~/linux/nginx.conf /etc/nginx/nginx.conf
+cp ~/wagov3/nginx.conf /etc/nginx/nginx.conf
 rm /etc/nginx/conf.d/*.conf
-cp ~/linux/ocs.conf /etc/nginx/conf.d/
-cp ~/linux/monitoring.conf /etc/nginx/conf.d/
-cp ~/linux/index.html /home/panel/html/
+cp ~/wagov3/ocs.conf /etc/nginx/conf.d/
+cp ~/wagov3/monitoring.conf /etc/nginx/conf.d/
+cp ~/wagov3/index.html /home/panel/html/
 systemctl daemon-reload
 systemctl restart openvpn@server
 systemctl enable openvpn@server
@@ -503,7 +503,7 @@ service cron restart
 systemctl enable privoxy.service
 systemctl enable squid.service
 history -c
-rm -Rf ~/linux/
+rm -Rf ~/wagov3/
 userdel -r debian
 # tail -f /var/log/syslog
 reboot
