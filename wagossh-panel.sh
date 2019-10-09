@@ -6,27 +6,23 @@ RESET='\033[0m';
 GREEN='\033[01;32m';
 WHITE='\033[01;37m';
 YELLOW='\033[00;33m';
-echo -e "                $GREEN Please wait.........$RESET"
-sudo apt-get update && sudo apt-get install apt-transport-https lsb-release ca-certificates -y &> /dev/null
-wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-/bin/cat <<"EOM" >/etc/apt/sources.list.d/php.list
+echo -e "                $GREEN Please wait it may take for a while..$RESET"
+apt-get update &> /dev/null
+apt-get -y install apt-transport-https lsb-release ca-certificates &> /dev/null
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg &> /dev/null
+cat << EOF > /etc/apt/sources.list.d/php.list
 deb https://packages.sury.org/php/ $(lsb_release -sc) main
-EOM
-sudo apt-get update &> /dev/null
-sudo apt-get install php5.6 -y php5.6-fpm libssh2-1 php-ssh2 libapache2-mod-php5.6 gcc make autoconf libc-dev pkg-config &> /dev/null
-sudo apt-get purge apache2 nginx -y &> /dev/null && sudo apt-get install nginx -y &> /dev/null
-rm /etc/nginx/sites-enabled/default &> /dev/null
-rm /etc/nginx/sites-available/default &> /dev/null
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
-mkdir -p /home/vps/public_html &> /dev/null
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/vps.conf"
+EOF
+apt-get update &> /dev/null
+apt-get -y install php5.6 php5.6-fpm php7.0-cli libssh2-1 php-ssh2 libapache2-mod-php5.6 php5.6-cli gcc make autoconf libc-dev pkg-config&> /dev/null
+apt-get -y purge apache2 nginx && apt-get install nginx -y &> /dev/null
+rm /etc/nginx/sites-enabled/default && rm /etc/nginx/sites-available/default
+wget  --quiet -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
+mkdir -p /home/vps/public_html
+wget  --quiet -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/vps.conf"
 sed -i 's/listen = \/run\/php\/php5.6-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/5.6/fpm/pool.d/www.conf
 service php5.6-fpm restart && service nginx restart
-clear
-echo -e "                $GREEN Installing packages success$RESET"
-sleep 3s
-clear
-echo -e "                $GREEN Setting up the Panel.$RESET"
+echo -e "                $GREEN Package update done..$RESET"
 MYIP=$(curl -4 icanhazip.com); &> /dev/null
 clear
 echo ""
