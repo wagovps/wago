@@ -259,10 +259,10 @@ connect-retry 0 1
 nice -20
 reneg-sec 0
 log /dev/null" >> /etc/openvpn/client-template1.txt
-cp /etc/openvpn/client-template1.txt /home/panel/html/PisoVPN-SunNoLoad.ovpn
-echo '<ca>' >> /home/panel/html/PisoVPN-SunNoLoad.ovpn
-cat /etc/openvpn/ca.crt >> /home/panel/html/PisoVPN-SunNoLoad.ovpn
-echo '</ca>' >> /home/panel/html/PisoVPN-SunNoLoad.ovpn
+cp /etc/openvpn/client-template1.txt /home/panel/html/WagoVPN-SunNoLoad.ovpn
+echo '<ca>' >> /home/panel/html/WagoVPN-SunNoLoad.ovpn
+cat /etc/openvpn/ca.crt >> /home/panel/html/WagoVPN-SunNoLoad.ovpn
+echo '</ca>' >> /home/panel/html/WagoVPN-SunNoLoad.ovpn
 }
 
 function stunconf () {

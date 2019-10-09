@@ -3,11 +3,11 @@ Certificate:
         Version: 3 (0x2)
         Serial Number: 1 (0x1)
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=PH, ST=NegrosOccidental, L=SipalayCity, O=PisoVPN, OU=PisoVPN, CN=PisoVPN/name=server/emailAddress=reyomayan@gmail.com
+        Issuer: C=PH, ST=NegrosOccidental, L=SipalayCity, O=WagoVPN, OU=WagoVPN, CN=WagoVPN/name=server/emailAddress=reyomayan@gmail.com
         Validity
             Not Before: Feb 27 19:10:44 2019 GMT
             Not After : Feb  3 19:10:44 2119 GMT
-        Subject: C=PH, ST=NegrosOccidental, L=SipalayCity, O=PisoVPN, OU=PisoVPN, CN=server/name=server/emailAddress=reyomayan@gmail.com
+        Subject: C=PH, ST=NegrosOccidental, L=SipalayCity, O=WagoVPN, OU=WagoVPN, CN=server/name=server/emailAddress=reyomayan@gmail.com
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (4096 bit)
@@ -59,7 +59,7 @@ Certificate:
                 D2:10:FD:77:C5:EC:1E:C9:2D:E8:E7:51:63:7A:1D:C7:4B:6B:78:A8
             X509v3 Authority Key Identifier: 
                 keyid:7F:AA:AB:DB:5D:E4:5E:87:16:27:34:8D:47:6C:29:7A:BF:E2:CA:C0
-                DirName:/C=PH/ST=NegrosOccidental/L=SipalayCity/O=PisoVPN/OU=PisoVPN/CN=PisoVPN/name=server/emailAddress=reyomayan@gmail.com
+                DirName:/C=PH/ST=NegrosOccidental/L=SipalayCity/O=WagoVPN/OU=WagoVPN/CN=WagoVPN/name=server/emailAddress=reyomayan@gmail.com
                 serial:E3:57:19:21:85:7F:08:3D
 
             X509v3 Extended Key Usage: 

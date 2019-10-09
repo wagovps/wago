@@ -4,7 +4,7 @@
 <br> 
 <br>  
 <br> 
-Powered by: PisoVPN<br>
+Powered by: WagoVPN<br>
 Feel free to fork
 <br>
 https://www.pisovpn.com
