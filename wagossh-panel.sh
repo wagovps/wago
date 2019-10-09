@@ -67,7 +67,7 @@ $server_lists_array=array(
 /* Service Variables */	
 $port_ssh= '22, 222'; 				// SSH Ports
 $port_dropbear= '442, 109, 143'; 			// Dropbear Ports
-$port_ssl= '445, 444'; 				// SSL Ports
+$port_ssl= '445'; 				// SSL Ports
 $port_squid= '3128, 8080, 8888'; 		// Squid Ports
 $ovpn_client= ''.$hosts.':88/client.ovpn';		// OpenVPN Client Config
 
