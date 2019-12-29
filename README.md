@@ -14,5 +14,5 @@ wget https://raw.githubusercontent.com/omayanrey/wagov3/master/wagossh-panel.sh 
 Powered by: WagoVPN<br>
 Feel free to fork
 <br>
-https://www.pisovpn.com
+http://www.wagovpn.tk
 </p>
