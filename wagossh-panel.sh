@@ -53,7 +53,7 @@ rm -rf /home/vps/public_html/index.php &> /dev/null
 <?php
 
 /* Site Data */
-$site_name        = "WagoSHH|VPN";
+$site_name        = "WagoSSH/VPN";
 $site_description = "WagoSSH|VPN";
 $site_template    = "sketchy"; // (flatly, darkly, sketchy, lumen, materia)
 /* Server Data */
